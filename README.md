@@ -1,4 +1,4 @@
-# Deep Learning Model Implementation in PyTorch
+# Deep Learning Models Implementation in PyTorch
 
 ## Calculations
 ### Calculation of Output Size
