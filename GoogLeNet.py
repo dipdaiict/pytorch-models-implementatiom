@@ -61,9 +61,9 @@ class AuxClassifier(nn.Module):
         x = self.fc2(x)
         return x    
     
-class GoogleLeNet(nn.Module):
+class GoogLeNet(nn.Module):
     def __init__(self, num_classes, aux_classifier=True):
-        super(GoogleLeNet, self).__init__()
+        super(GoogLeNet, self).__init__()
         self.aux_classifier = aux_classifier
         self.head = nn.Sequential(
             nn.Conv2d(in_channels=3, out_channels=64, kernel_size=7, stride=2, padding=3), 
@@ -125,12 +125,13 @@ if __name__ == '__main__':
     fake_input = torch.randn(1, 3, 224, 224) 
     num_classes = 1000
     print(f"Model Architecture:")
-    model = GoogleLeNet(num_classes=num_classes, aux_classifier=True) # Training So We are aux_classifier is equal to True & Evaluation Mode aux_classifier is False.
+    model = GoogLeNet(num_classes=num_classes, aux_classifier=True) # Training So We are aux_classifier is equal to True & Evaluation Mode aux_classifier is False.
     print(model)    
     print("--------------------------------")
     model.train()
     output0, output1, output2 = model(fake_input)
-    
+    # For Evaluation Mode: Below command and aux_classifier = False
+    # model.eval()
     # Comment out Output 0 & 1 when you are in testing model architecture........
     print("Output 0 shape:", output0.shape)  # Shape of first auxiliary classifier output # In Training So We are Get the Output0 in Evaluation Mode we get the error.
     print("Output 1 shape:", output1.shape)  # Shape of second auxiliary classifier output # In Training So We are Get the Output1 in Evaluation Mode we get the error.
